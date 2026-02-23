@@ -1,0 +1,46 @@
+<!--Dichiarazione tipo di documento-->
+<!DOCTYPE html>
+<!--Contenitore html e lingua italiana-->
+<html lang="it">
+
+<!--Informazioni tecniche non visibili-->
+<head>
+  <!--standard per scrivere accenti e caratteri speciali-->
+    <meta charset="utf-8" />
+  <!--Rende la pagina responsive su mobile, usando la larghezza reale del dispositivo e uno zoom iniziale 1:1. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--Titolo della pagina che vedo nella tab del browser-->
+    <title>Catalogo Film</title>
+  <!--Collegamento pagina stile-->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Generi -->
+  <section class="nav-menu">
+    <h2>Generi cinematografici</h2>
+    <div id="generi" class="generi"></div>
+  </section>
+
+  <!-- Film -->
+  <section>
+    <h2>Film per genere</h2>
+    <div id="contenitore-blocchi"></div>
+  </section>
+
+  <!-- Playlist -->
+   <section>
+    <h2>La mia lista</h2>
+    <div id="playlist" class="griglia-playlist"></div>
+  </section>
+  
+<script type="module" src="film.js"></script>
+<script type="module" src="interazione.js"></script>
+</body>
+</html>
+
+
+ <!-- 
+TO DO
+ aggiungi form 
+ -->
