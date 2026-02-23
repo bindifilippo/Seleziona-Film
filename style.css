@@ -210,6 +210,11 @@ h3 {
   opacity: 1;
 }
 
+.column{
+  /*flex-grow=0, flex-shrink=0.
+  clmap(min, %, max)*/
+  flex: 0 0 clamp(260px, 25vw, 360px);
+}
 
 .griglia-playlist{
   display: grid;
