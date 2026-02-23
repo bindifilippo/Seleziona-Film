@@ -15,6 +15,7 @@
   --radius: 16px;
   --radius-sm: 12px;
   --gap: 18px;
+  --gap-lg:30px;
 }
 
 /*radice della pagina*/
@@ -45,18 +46,25 @@ body {
   background: transparent;
 }
 
+.layout{
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-lg);
+}
+
+.nav-menu{
+  display: flex;            
+  flex-direction: column;
+}
+
 
 section {
-  max-width: 1050px;
-  /*auto: sinistra/destra = centro la sezione
-  28px: spazio in basso tra una sezione e l'altra*/
-  margin: 0 auto 28px auto;
+  max-width: 900px;
   padding: 22px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  /*sfoca lo sfondo dietro la card*/
   backdrop-filter: blur(12px);
 }
 
@@ -76,8 +84,8 @@ h3 {
 
 .generi {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
 .genere {
@@ -205,8 +213,23 @@ h3 {
 
 .griglia-playlist{
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gap);
+  gap: var(--gap);  
+}
+
+.area-bottoni{
+  display: flex;
+  padding-bottom: var(--gap-lg);
+}
+
+.bottone{
+  max-width: 900px;
+  padding: 22px;
+  margin: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
 }
 
 /*responsive media query*/
