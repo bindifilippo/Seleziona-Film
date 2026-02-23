@@ -159,6 +159,11 @@ h3 {
   border-color: rgba(255, 255, 255, 0.24);
 }
 
+.scheda-film:active {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
 .scheda-film p {
   margin: 0 0 8px 0;
   color: var(--muted);
