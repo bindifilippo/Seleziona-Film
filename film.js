@@ -19,19 +19,34 @@ class Film {
 }
 
 class Genere {
-    constructor(nome){
+    constructor(nome) {
         this.nome = nome;
         this.films = [];
     }
-    aggiungiFilm(nuovoFilm){
-    this.films.push(nuovoFilm);
+    aggiungiFilm(nuovoFilm) {
+        if (!this.films.some(f => f.titolo === nuovoFilm.titolo)) {
+            this.films.push(nuovoFilm);
+        }
     }
-    togliFilm(eliminaFilm){
-    this.films = this.films.filter(f => eliminaFilm != f.titolo);
-    }   
+    togliFilm(eliminaFilm) {
+        this.films = this.films.filter(f => eliminaFilm !== f.titolo);
+    }
 }
 
 
+class Playlist {
+    constructor() {
+        this.films = []; 
+    }
+    aggiungiFilm(film) {
+        if (!this.films.some(f => f.titolo === film.titolo)) {
+            this.films.push(film); 
+        }
+    }
+    rimuoviFilm(titoloFilm) {
+        this.films = this.films.filter(f => f.titolo !== titoloFilm); 
+    }
+}
 
 let drammatico = new Genere("Drammatico");
 drammatico.aggiungiFilm(new Film("Petroliere", "Paul Thomas Anderson", "2007"));
@@ -59,4 +74,4 @@ catalogo.push(commedia);
 
 console.log(catalogo);
 
-export {catalogo};
+export {Playlist, catalogo };
