@@ -69,12 +69,23 @@ function renderFilmPerGenere() {
 let playlistGenere = new Playlist("Playlist");
 
 function aggiungiAllaPlaylist(film, card) {
+  let genereAppartenenza = "";
+    catalogo.forEach(genere => {
+      if (genere.films.some(f => f.titolo === film.titolo)) {
+        genereAppartenenza = genere.nome;
+      }
+    });
+
   playlistGenere.aggiungiFilm(film);
   
   const copiaCard = card.cloneNode(true);
   card.classList.remove("is-active");
   copiaCard.classList.remove("is-active");
   copiaCard.classList.add("playlist");
+
+  const genereElemento = document.createElement("p");
+  genereElemento.innerHTML = `<strong>Genere:</strong> ${genereAppartenenza}`;
+  copiaCard.appendChild(genereElemento);
 
   playlist.appendChild(copiaCard);
   copiaCard.addEventListener("click", () => {
@@ -121,7 +132,6 @@ const rimuoviBtn = document.getElementById("rimuovi");
 rimuoviBtn.addEventListener("click", function(){
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
   if (cardSelezionate.length > 0) {
-    
     cardSelezionate.forEach(card => {
     const titoloFilm = card.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
       playlistGenere.rimuoviFilm(titoloFilm);
