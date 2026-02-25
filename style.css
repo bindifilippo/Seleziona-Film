@@ -245,12 +245,16 @@ h3 {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.24);
   cursor: pointer;
 }
 
-.bottone:hover{
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.24);
+#rimuovi:hover{
+  background: rgba(225, 9, 9, 0.3);
+}
+
+#aggiungi:hover{
+ background: rgba(0, 255, 214, 0.14);
 }
 
 

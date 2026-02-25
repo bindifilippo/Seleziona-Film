@@ -63,6 +63,7 @@ function renderFilmPerGenere() {
   });
 }
 
+
 const aggiungiBtn = document.getElementById("aggiungi");
 
 aggiungiBtn.addEventListener("click", function () {
@@ -70,13 +71,29 @@ aggiungiBtn.addEventListener("click", function () {
   if (cardSelezionate.length > 0) {
     cardSelezionate.forEach(card => {
       const copiaCard = card.cloneNode(true);
+      card.classList.remove("is-active");
       copiaCard.classList.remove("is-active"); 
       copiaCard.classList.add("playlist"); 
       playlist.appendChild(copiaCard); 
-      card.classList.remove("is-active");
+      copiaCard.addEventListener("click", () => {
+        copiaCard.classList.toggle("is-active"); 
+      });
     });
   } else {
-    alert("Seleziona almeno un film da aggiungere alla playlist.");
+    alert("SELEZIONA UN FILM");
+  }
+});
+
+const rimuoviBtn = document.getElementById("rimuovi");
+
+rimuoviBtn.addEventListener("click", function(){
+  const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
+  if (cardSelezionate.length > 0) {
+    cardSelezionate.forEach(card => {
+       card.remove();
+    });
+   } else {
+    alert("NESSUN FILM SELEZIONATO");
   }
 });
 
