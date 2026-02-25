@@ -68,6 +68,7 @@ section {
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
 }
+
 .bottone-form{
   display: flex;
   margin: 0 auto;
@@ -109,16 +110,11 @@ h3 {
   border-color: rgba(255, 255, 255, 0.22);
 }
 
-.genere:active {
-  transform: translateY(0);
-}
-
 
 .genere.is-active {
   background: rgba(0, 255, 214, 0.14);
   border-color: rgba(0, 255, 214, 0.35);
 }
-
 
 .blocco-genere {
   /*macro card*/
@@ -138,6 +134,7 @@ h3 {
 }
 
 
+
 .scheda-film {
   padding: 14px;
   border-radius: var(--radius-sm);
@@ -155,14 +152,17 @@ h3 {
 }
 
 .scheda-film:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.24);
 }
 
-.scheda-film:active {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.24);
+/* Styles for active film cards */
+.scheda-film.is-active {
+  background: rgba(0, 255, 214, 0.14);
+  border-color: rgba(0, 255, 214, 0.35);
 }
+
 
 .scheda-film p {
   margin: 0 0 8px 0;
@@ -245,7 +245,14 @@ h3 {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
+  cursor: pointer;
 }
+
+.bottone:hover{
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
 
 /*responsive media query*/
 @media (max-width: 1100px) {

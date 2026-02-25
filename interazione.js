@@ -5,6 +5,7 @@ const cardGeneri = document.getElementById("generi");
 const cardFilm = document.getElementById("contenitore-blocchi");
 const playlist = document.getElementById("playlist");
 
+let genereAttivo = "Overview";
 
 function renderGeneri() {
   cardGeneri.innerHTML = ""; //pulisce memoria e resetta html
@@ -13,14 +14,22 @@ function renderGeneri() {
     bottone.id = genere.nome; 
     bottone.className = "genere";
     bottone.textContent = genere.nome;
+
+    if (genere.nome === genereAttivo) {
+      bottone.classList.add("is-active");
+    }
+    bottone.addEventListener("click", () => {
+      aggiornaUI(); 
+    });
+
     cardGeneri.appendChild(bottone);
   });
 }
 
-// creo blocchi film per genere
 function renderFilmPerGenere() {
   cardFilm.innerHTML = "";
   catalogo.forEach((index) => {
+    //condizione per non ritornare niente
     if(index.nome === "Overview"){
       return;
     }
@@ -36,6 +45,7 @@ function renderFilmPerGenere() {
     const griglia = document.createElement("div");
     griglia.className = "film";
     blocco.appendChild(griglia);
+
     index.films.forEach((filmData) => {
       const card = document.createElement("div");
       card.className = "scheda-film";
@@ -43,33 +53,43 @@ function renderFilmPerGenere() {
       "<p><strong>Titolo:</strong> " + filmData.titolo + "</p>" +
       "<p><strong>Regista:</strong> " + filmData.regista + "</p>" +
       "<p><strong>Anno:</strong> " + filmData.anno + "</p>";
-      griglia.appendChild(card);
-      /*
-      // Aggiungo evento click per copiare la card nella playlist
-      card.addEventListener("click", function () {
-        // Creo una copia del film selezionato
-        const copiaCard = card.cloneNode(true);
-        // Aggiungo l'attributo genere alla copia
-        copiaCard.setAttribute("data-genere", index.nome);
-        const genereFilm = document.createElement("p");
-        genereFilm.innerHTML = "<strong>Genere:</strong> " + index.nome;
-        copiaCard.appendChild(genereFilm);
 
-        // Aggiungo la copia del film nella playlist
-        //copiaCard.classList.add("playlist");
-        //playlist.appendChild(copiaCard);
-      }); */
+      griglia.appendChild(card);
+
+      card.addEventListener("click", function() {
+        card.classList.toggle("is-active");
+      });
     });
   });
 }
 
-let genereAttivo = "Overview";
+const aggiungiBtn = document.getElementById("aggiungi");
+
+aggiungiBtn.addEventListener("click", function () {
+  const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
+  if (cardSelezionate.length > 0) {
+    cardSelezionate.forEach(card => {
+      const copiaCard = card.cloneNode(true);
+      copiaCard.classList.remove("is-active"); 
+      copiaCard.classList.add("playlist"); 
+      playlist.appendChild(copiaCard); 
+      card.classList.remove("is-active");
+    });
+  } else {
+    alert("Seleziona almeno un film da aggiungere alla playlist.");
+  }
+});
+
 
 function aggiornaUI() {
   const bottoni = cardGeneri.getElementsByClassName("genere");
-  for (const btn of bottoni) {    
-    if (btn.id === genereAttivo) btn.classList.add("is-active");
-    else btn.classList.remove("is-active");
+   for (const btn of bottoni) {    
+    if (btn.id === genereAttivo){
+      btn.classList.add("is-active");
+    } 
+    else {
+      btn.classList.remove("is-active");
+    }
   }
   const blocchi = cardFilm.getElementsByClassName("blocco-genere");
   for (const genere of blocchi) {
