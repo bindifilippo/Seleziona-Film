@@ -68,16 +68,30 @@ const aggiungiBtn = document.getElementById("aggiungi");
 
 aggiungiBtn.addEventListener("click", function () {
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
+
   if (cardSelezionate.length > 0) {
     cardSelezionate.forEach(card => {
-      const copiaCard = card.cloneNode(true);
-      card.classList.remove("is-active");
-      copiaCard.classList.remove("is-active"); 
-      copiaCard.classList.add("playlist"); 
-      playlist.appendChild(copiaCard); 
-      copiaCard.addEventListener("click", () => {
-        copiaCard.classList.toggle("is-active"); 
+      const titoloFilm = card.querySelector("p strong").nextSibling.textContent.trim(); // Estraggo il titolo del film
+
+      // Verifico se il film è già nella playlist
+      const filmGiàAggiunto = [...playlist.querySelectorAll(".scheda-film")].some(film => {
+        const titoloPlaylist = film.querySelector("p strong").nextSibling.textContent.trim();
+        return titoloFilm === titoloPlaylist; // Confronta il titolo
       });
+
+      if (!filmGiàAggiunto) {
+        // Se il film non è già presente, aggiungilo
+        const copiaCard = card.cloneNode(true); // Crea una copia della card
+        card.classList.remove("is-active");
+        copiaCard.classList.remove("is-active"); 
+        copiaCard.classList.add("playlist"); 
+        playlist.appendChild(copiaCard); 
+        copiaCard.addEventListener("click", () => {
+          copiaCard.classList.toggle("is-active"); 
+        });
+      } else {
+        alert("Il film è già nella playlist!");
+      }
     });
   } else {
     alert("SELEZIONA UN FILM");
