@@ -70,13 +70,14 @@ let playlistGenere = new Playlist("Playlist");
 
 function aggiungiAllaPlaylist(film, card) {
   let genereAppartenenza = "";
+
     catalogo.forEach(genere => {
       if (genere.films.some(f => f.titolo === film.titolo)) {
         genereAppartenenza = genere.nome;
       }
     });
 
-  playlistGenere.aggiungiFilm(film);
+  playlistGenere.aggiungiFilm(film, genereAppartenenza);
   
   const copiaCard = card.cloneNode(true);
   card.classList.remove("is-active");

@@ -38,9 +38,9 @@ class Playlist {
     constructor() {
         this.films = []; 
     }
-    aggiungiFilm(film) {
+    aggiungiFilm(film, genere) {
         if (!this.films.some(f => f.titolo === film.titolo)) {
-            this.films.push(film); 
+            this.films.push({ film, genere }); 
         }
     }
     rimuoviFilm(titoloFilm) {
