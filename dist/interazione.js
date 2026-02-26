@@ -1,4 +1,4 @@
-import { Playlist, catalogo } from './film.js';
+import { Film, Playlist, catalogo } from './film.js';
 //uso contenitori html della pagina
 const cardGeneri = document.getElementById("generi");
 const cardFilm = document.getElementById("contenitore-blocchi");
@@ -80,21 +80,25 @@ aggiungiBtn.addEventListener("click", function () {
     if (cardSelezionate.length > 0) {
         cardSelezionate.forEach(filmCard => {
             const titoloFilm = filmCard.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
+            const filmCardElement = filmCard;
+            let filmDaAggiungere = null; // Tipo Film | null per l'inizializzazione
             // Cerco il film nel catalogo
-            let filmDaAggiungere = null; //memorizzare il film che verrà aggiunto alla playlist.
             catalogo.forEach(genere => {
                 const film = genere.films.find(f => f.titolo === titoloFilm);
                 if (film) {
-                    filmDaAggiungere = film;
+                    filmDaAggiungere = film; // Se trovato, assegna il film
                 }
             });
             // Verifica se il film è già nella playlist
-            const filmGiàAggiunto = playlistGenere.films.some(f => f.film.titolo === titoloFilm);
+            const filmGiàAggiunto = playlistGenere.films.some(f => f.titolo === titoloFilm);
             if (!filmGiàAggiunto) {
-                aggiungiAllaPlaylist(filmDaAggiungere, filmCard);
+                // Se il film è stato trovato, lo aggiungiamo alla playlist
+                if (filmDaAggiungere !== null) {
+                    aggiungiAllaPlaylist(filmDaAggiungere, filmCardElement);
+                }
             }
-            else if (filmGiàAggiunto) {
-                filmCard.classList.remove("is-active");
+            else {
+                filmCardElement.classList.remove("is-active");
                 alert("Il film è già nella playlist!");
             }
         });

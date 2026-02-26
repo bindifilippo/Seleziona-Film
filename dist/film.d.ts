@@ -12,13 +12,12 @@ declare class Genere {
     togliFilm(eliminaFilm: string): void;
 }
 declare class Playlist {
-    films: {
-        film: Film;
-    }[];
+    films: Film[];
     constructor();
     aggiungiFilm(film: Film): void;
     rimuoviFilm(titoloFilm: string): void;
+    getFilmByTitle(titolo: string): Film | undefined;
 }
 declare let catalogo: Genere[];
-export { Playlist, catalogo };
+export { Film, Playlist, catalogo };
 //# sourceMappingURL=film.d.ts.map

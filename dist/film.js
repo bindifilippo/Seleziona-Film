@@ -37,13 +37,19 @@ class Playlist {
     constructor() {
         this.films = [];
     }
+    // Aggiungi un film alla playlist
     aggiungiFilm(film) {
-        if (!this.films.some(f => f.film.titolo === film.titolo)) {
-            this.films.push({ film });
+        if (!this.films.some(f => f.titolo === film.titolo)) {
+            this.films.push(film);
         }
     }
+    // Rimuovi un film dalla playlist usando il titolo
     rimuoviFilm(titoloFilm) {
-        this.films = this.films.filter(f => f.film.titolo !== titoloFilm);
+        this.films = this.films.filter(f => f.titolo !== titoloFilm);
+    }
+    // Metodo per ottenere un film dalla playlist per titolo
+    getFilmByTitle(titolo) {
+        return this.films.find(f => f.titolo === titolo);
     }
 }
 let drammatico = new Genere("Drammatico");
@@ -66,5 +72,5 @@ catalogo.push(overview);
 catalogo.push(drammatico);
 catalogo.push(azione);
 catalogo.push(commedia);
-export { Playlist, catalogo };
+export { Film, Playlist, catalogo };
 //# sourceMappingURL=film.js.map

@@ -1,4 +1,4 @@
-import { Playlist, catalogo } from './film.js';
+import {Film,  Playlist, catalogo } from './film.js';
 
 //uso contenitori html della pagina
 const cardGeneri = document.getElementById("generi") as HTMLElement;
@@ -68,7 +68,7 @@ function renderFilmPerGenere() {
 
 let playlistGenere = new Playlist();
 
-function aggiungiAllaPlaylist(filmData:any, filmCard:any) {  //aggiornamento playlist nel DOM e in memoria
+function aggiungiAllaPlaylist(filmData:Film, filmCard:HTMLElement) {  //aggiornamento playlist nel DOM e in memoria
   let genereAppartenenza = "";
 
   // Trova il genere di appartenenza del film
@@ -80,7 +80,7 @@ function aggiungiAllaPlaylist(filmData:any, filmCard:any) {  //aggiornamento pla
 
   playlistGenere.aggiungiFilm(filmData); 
 
-  const copiaCard = filmCard.cloneNode(true);
+  const copiaCard = filmCard.cloneNode(true) as HTMLElement; 
   copiaCard.classList.remove("is-active");
   filmCard.classList.remove("is-active");
 
@@ -105,22 +105,27 @@ aggiungiBtn.addEventListener("click", function () {
     cardSelezionate.forEach(filmCard => {
       const titoloFilm = filmCard.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
 
-    // Cerco il film nel catalogo
-    let filmDaAggiungere = null; //memorizzare il film che verrà aggiunto alla playlist.
-    catalogo.forEach(genere => {
-      const film = genere.films.find(f => f.titolo === titoloFilm);
-      if (film) {
-        filmDaAggiungere = film;
-      }
-    });
+      const filmCardElement = filmCard as HTMLElement;
+      let filmDaAggiungere: Film | null = null; // Tipo Film | null per l'inizializzazione
+
+      // Cerco il film nel catalogo
+      catalogo.forEach(genere => {
+        const film = genere.films.find(f => f.titolo === titoloFilm);
+        if (film) {
+          filmDaAggiungere = film; // Se trovato, assegna il film
+        }
+      });
 
       // Verifica se il film è già nella playlist
-      const filmGiàAggiunto = playlistGenere.films.some(f => f.film.titolo === titoloFilm);
+      const filmGiàAggiunto = playlistGenere.films.some(f => f.titolo === titoloFilm);
 
       if (!filmGiàAggiunto) {
-        aggiungiAllaPlaylist(filmDaAggiungere, filmCard);
-      } else if (filmGiàAggiunto) {
-        filmCard.classList.remove("is-active");
+        // Se il film è stato trovato, lo aggiungiamo alla playlist
+        if (filmDaAggiungere !== null) {
+          aggiungiAllaPlaylist(filmDaAggiungere, filmCardElement);
+        }
+      } else {
+        filmCardElement.classList.remove("is-active");
         alert("Il film è già nella playlist!");
       }
     });
