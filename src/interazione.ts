@@ -1,9 +1,9 @@
 import { Playlist, catalogo } from './film.js';
 
 //uso contenitori html della pagina
-const cardGeneri = document.getElementById("generi");
-const cardFilm = document.getElementById("contenitore-blocchi");
-const playlist = document.getElementById("playlist");
+const cardGeneri = document.getElementById("generi") as HTMLElement;
+const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
+const playlist = document.getElementById("playlist") as HTMLElement;
 
 let genereAttivo = "Overview";
 
@@ -66,9 +66,9 @@ function renderFilmPerGenere() {
 }
 
 
-let playlistGenere = new Playlist("Playlist");
+let playlistGenere = new Playlist();
 
-function aggiungiAllaPlaylist(filmData, filmCard) {  //aggiornamento playlist nel DOM e in memoria
+function aggiungiAllaPlaylist(filmData:any, filmCard:any) {  //aggiornamento playlist nel DOM e in memoria
   let genereAppartenenza = "";
 
   // Trova il genere di appartenenza del film
@@ -96,7 +96,7 @@ function aggiungiAllaPlaylist(filmData, filmCard) {  //aggiornamento playlist ne
 }
 
 
-const aggiungiBtn = document.getElementById("aggiungi");
+const aggiungiBtn = document.getElementById("aggiungi") as HTMLElement;
 
 aggiungiBtn.addEventListener("click", function () {
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
@@ -105,8 +105,7 @@ aggiungiBtn.addEventListener("click", function () {
     cardSelezionate.forEach(filmCard => {
       const titoloFilm = filmCard.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
 
-      // Cerco il film nel catalogo
-     
+    // Cerco il film nel catalogo
     let filmDaAggiungere = null; //memorizzare il film che verrà aggiunto alla playlist.
     catalogo.forEach(genere => {
       const film = genere.films.find(f => f.titolo === titoloFilm);
@@ -121,6 +120,7 @@ aggiungiBtn.addEventListener("click", function () {
       if (!filmGiàAggiunto) {
         aggiungiAllaPlaylist(filmDaAggiungere, filmCard);
       } else if (filmGiàAggiunto) {
+        filmCard.classList.remove("is-active");
         alert("Il film è già nella playlist!");
       }
     });
@@ -129,14 +129,14 @@ aggiungiBtn.addEventListener("click", function () {
 });
 
 
-const rimuoviBtn = document.getElementById("rimuovi");
+const rimuoviBtn = document.getElementById("rimuovi") as HTMLElement;
 
 rimuoviBtn.addEventListener("click", function(){
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
   if (cardSelezionate.length > 0) {
     cardSelezionate.forEach(filmCard => {
     const titoloFilm = filmCard.getAttribute("data-id"); 
-      playlistGenere.rimuoviFilm(titoloFilm);
+      playlistGenere.rimuoviFilm(titoloFilm!);
       filmCard.remove();
     });
   }
@@ -155,10 +155,11 @@ function aggiornaUI() {
   }
   const blocchi = cardFilm.getElementsByClassName("blocco-genere");
   for (const genere of blocchi) {
+    const bloccoGenere = genere as HTMLElement;
     if (genereAttivo === "Overview" || genere.id === genereAttivo) {
-      genere.style.display = "block";
+      bloccoGenere.style.display = "block";
     } else {
-      genere.style.display = "none";
+      bloccoGenere.style.display = "none";
     }
   }
 }
