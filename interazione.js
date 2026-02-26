@@ -49,7 +49,7 @@ function renderFilmPerGenere() {
     index.films.forEach((filmData) => {
       const card = document.createElement("div");
       card.className = "scheda-film";
-      card.setAttribute("data-id", filmData.titolo); // Aggiungi il titolo come identificatore unico
+      card.setAttribute("data-id", filmData.titolo); 
 
       card.innerHTML =
       "<p><strong>Titolo:</strong> " + filmData.titolo + "</p>" +
@@ -68,25 +68,26 @@ function renderFilmPerGenere() {
 
 let playlistGenere = new Playlist("Playlist");
 
-function aggiungiAllaPlaylist(film, card) {
+function aggiungiAllaPlaylist(filmData, filmCard) {  //aggiornamento playlist nel DOM e in memoria
   let genereAppartenenza = "";
 
-    catalogo.forEach(genere => {
-      if (genere.films.some(f => f.titolo === film.titolo)) {
-        genereAppartenenza = genere.nome;
-      }
-    });
+  // Trova il genere di appartenenza del film
+  catalogo.forEach(genere => {
+    if (genere.films.some(f => f.titolo === filmData.titolo)) {
+      genereAppartenenza = genere.nome; 
+    }
+  });
 
-  playlistGenere.aggiungiFilm(film, genereAppartenenza);
-  
-  const copiaCard = card.cloneNode(true);
-  card.classList.remove("is-active");
+  playlistGenere.aggiungiFilm(filmData, genereAppartenenza); 
+
+  const copiaCard = filmCard.cloneNode(true);
+  filmCard.classList.remove("is-active");
   copiaCard.classList.remove("is-active");
-  copiaCard.classList.add("playlist");
 
-  const genereElemento = document.createElement("p");
-  genereElemento.innerHTML = `<strong>Genere:</strong> ${genereAppartenenza}`;
-  copiaCard.appendChild(genereElemento);
+  // Aggiungi il genere alla card del film
+  const genereFilm = document.createElement("p");
+  genereFilm.innerHTML = `<strong>Genere:</strong> ${genereAppartenenza}`;
+  copiaCard.appendChild(genereFilm);
 
   playlist.appendChild(copiaCard);
   copiaCard.addEventListener("click", () => {
@@ -94,34 +95,36 @@ function aggiungiAllaPlaylist(film, card) {
   });
 }
 
+
 const aggiungiBtn = document.getElementById("aggiungi");
 
 aggiungiBtn.addEventListener("click", function () {
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
 
   if (cardSelezionate.length > 0) {
-    cardSelezionate.forEach(card => {
-      const titoloFilm = card.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
+    cardSelezionate.forEach(filmCard => {
+      const titoloFilm = filmCard.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
 
       // Cerco il film nel catalogo
-      let filmDaAggiungere = null;
-      catalogo.forEach(genere => {
-        genere.films.forEach(film => {
-          if (film.titolo === titoloFilm) {
-            filmDaAggiungere = film;
-          }
-        });
-      });
+     
+    let filmDaAggiungere = null; //memorizzare il film che verrà aggiunto alla playlist.
+    catalogo.forEach(genere => {
+      const film = genere.films.find(f => f.titolo === titoloFilm);
+      if (film) {
+        filmDaAggiungere = film;
+      }
+    });
 
-      // Verifica se il film è già nella playlist 
-      const filmGiàAggiunto = playlistGenere.films.some(f => f.titolo === titoloFilm);
-      if (!filmGiàAggiunto && filmDaAggiungere) {
-        aggiungiAllaPlaylist(filmDaAggiungere, card);
+      // Verifica se il film è già nella playlist
+      const filmGiàAggiunto = playlistGenere.films.some(f => f.film.titolo === titoloFilm);
+
+      if (!filmGiàAggiunto) {
+        aggiungiAllaPlaylist(filmDaAggiungere, filmCard);
       } else if (filmGiàAggiunto) {
         alert("Il film è già nella playlist!");
       }
     });
-    console.log(playlistGenere);
+     console.log(playlistGenere);
   } else {
     alert("SELEZIONA UN FILM");
   }
@@ -133,12 +136,11 @@ const rimuoviBtn = document.getElementById("rimuovi");
 rimuoviBtn.addEventListener("click", function(){
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
   if (cardSelezionate.length > 0) {
-    cardSelezionate.forEach(card => {
-    const titoloFilm = card.getAttribute("data-id"); // Estraggo il titolo dal 'data-id'
+    cardSelezionate.forEach(filmCard => {
+    const titoloFilm = filmCard.getAttribute("data-id"); 
       playlistGenere.rimuoviFilm(titoloFilm);
-      card.remove();
+      filmCard.remove();
     });
-    console.log(playlistGenere);  // Mostra la playlist aggiornata dopo la rimozione
   } else {
     alert("NESSUN FILM SELEZIONATO");
   }
@@ -165,11 +167,11 @@ function aggiornaUI() {
   }
 }
 
-function leggiEvento() {
+function leggiEvento() {  
   const bottoni = cardGeneri.getElementsByClassName("genere");
-  for (const btn of bottoni) {
+  for (const btn of bottoni) { 
     btn.addEventListener("click", () => {
-      genereAttivo = btn.id
+      genereAttivo = btn.id 
       aggiornaUI();
     });
   }

@@ -1,9 +1,4 @@
 //TO DO
-//impostare OOP-done
-
-//menu a sx
-    //visualizzazione dati a dx
-         //bottone aggiungi - rimuovi
 
 //migrare codice a typescript
 
@@ -72,6 +67,4 @@ catalogo.push(drammatico);
 catalogo.push(azione);
 catalogo.push(commedia);
 
-console.log(catalogo);
-
-export {Playlist, catalogo };
+export {Playlist, catalogo};
