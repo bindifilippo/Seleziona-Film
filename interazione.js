@@ -125,8 +125,6 @@ aggiungiBtn.addEventListener("click", function () {
       }
     });
      console.log(playlistGenere);
-  } else {
-    alert("SELEZIONA UN FILM");
   }
 });
 
@@ -141,8 +139,6 @@ rimuoviBtn.addEventListener("click", function(){
       playlistGenere.rimuoviFilm(titoloFilm);
       filmCard.remove();
     });
-  } else {
-    alert("NESSUN FILM SELEZIONATO");
   }
 });
 

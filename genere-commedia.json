@@ -1,0 +1,22 @@
+{
+  "categoria": {
+    "nome": "Commedia",
+    "films": [
+      {
+        "titolo": "Un'impresa da Dio",
+        "regista": "Tom Shadyac",
+        "anno": "2003"
+      },
+      {
+        "titolo": "Superbad",
+        "regista": "Greg Mottola",
+        "anno": "2007"
+      },
+      {
+        "titolo": "Una notte da leoni",
+        "regista": "Todd Phillips",
+        "anno": "2009"
+      }
+    ]
+  }
+}

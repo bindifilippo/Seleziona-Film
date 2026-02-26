@@ -5,6 +5,13 @@
 //form modale
 
 
+//inserire metodo fetch che prende i dati dal json
+    //let x = fetch (...)
+    //simulare inserimento dinamico dati.
+        //attenzione alle interazioni sugli elementi (eventi asincroni) 
+            // foto lavagna 4 passagg
+    
+
 class Film {
     constructor(titolo, regista, anno){
         this.titolo = titolo;

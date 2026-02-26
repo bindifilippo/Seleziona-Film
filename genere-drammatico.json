@@ -1,0 +1,29 @@
+{
+  "categoria": {
+    "nome": "Drammatico",
+    "films": [
+      {
+        "titolo": "Petroliere",
+        "regista": "Paul Thomas Anderson",
+        "anno": "2007"
+      },
+      {
+        "titolo": "La La Land",
+        "regista": "Damien Chazelle",
+        "anno": "2016"
+      },
+      {
+        "titolo": "Forrest Gump",
+        "regista": "Robert Zemeckis",
+        "anno": "1994"
+      },
+      {
+        "titolo": "The Shawshank Redemption",
+        "regista": "Frank Darabont",
+        "anno": "1994"
+      }
+    ]
+  }
+}
+
+
