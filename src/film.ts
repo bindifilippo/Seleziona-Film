@@ -44,14 +44,14 @@ class Genere {
 
 
 class Playlist {
-    films: { film: Film, genere: string }[];
+    films: { film: Film }[];
 
     constructor() {
         this.films = []; 
     }
-    aggiungiFilm(film: Film, genere: string):void {
+    aggiungiFilm(film: Film):void {
         if (!this.films.some(f => f.film.titolo === film.titolo)) {
-            this.films.push({ film, genere }); 
+            this.films.push({film}); 
         }
     }
     rimuoviFilm(titoloFilm: string): void {

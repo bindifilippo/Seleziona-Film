@@ -14,10 +14,9 @@ declare class Genere {
 declare class Playlist {
     films: {
         film: Film;
-        genere: string;
     }[];
     constructor();
-    aggiungiFilm(film: Film, genere: string): void;
+    aggiungiFilm(film: Film): void;
     rimuoviFilm(titoloFilm: string): void;
 }
 declare let catalogo: Genere[];

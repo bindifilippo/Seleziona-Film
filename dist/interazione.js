@@ -61,10 +61,10 @@ function aggiungiAllaPlaylist(filmData, filmCard) {
             genereAppartenenza = genere.nome;
         }
     });
-    playlistGenere.aggiungiFilm(filmData, genereAppartenenza);
+    playlistGenere.aggiungiFilm(filmData);
     const copiaCard = filmCard.cloneNode(true);
-    filmCard.classList.remove("is-active");
     copiaCard.classList.remove("is-active");
+    filmCard.classList.remove("is-active");
     // Aggiungi il genere alla card del film
     const genereFilm = document.createElement("p");
     genereFilm.innerHTML = `<strong>Genere:</strong> ${genereAppartenenza}`;
@@ -98,7 +98,6 @@ aggiungiBtn.addEventListener("click", function () {
                 alert("Il film è già nella playlist!");
             }
         });
-        console.log(playlistGenere);
     }
 });
 const rimuoviBtn = document.getElementById("rimuovi");
