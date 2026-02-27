@@ -1,14 +1,14 @@
 import {Film,  Playlist, catalogo } from './film.js';
 
-//uso contenitori html della pagina
 const cardGeneri = document.getElementById("generi") as HTMLElement;
 const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
 const playlist = document.getElementById("playlist") as HTMLElement;
 
+
 let genereAttivo = "Overview";
 
 function renderGeneri() {
-  cardGeneri.innerHTML = ""; //pulisce memoria e resetta html
+  cardGeneri.innerHTML = ""; 
   catalogo.forEach((genere) => {
     const bottone = document.createElement("div");
     bottone.id = genere.nome; 
@@ -65,13 +65,11 @@ function renderFilmPerGenere() {
   });
 }
 
-
 let playlistGenere = new Playlist();
 
 function aggiungiAllaPlaylist(filmData:Film, filmCard:HTMLElement) {  //aggiornamento playlist nel DOM e in memoria
   let genereAppartenenza = "";
 
-  // Trova il genere di appartenenza del film
   catalogo.forEach(genere => {
     if (genere.films.some(f => f.titolo === filmData.titolo)) {
       genereAppartenenza = genere.nome; 
@@ -84,7 +82,7 @@ function aggiungiAllaPlaylist(filmData:Film, filmCard:HTMLElement) {  //aggiorna
   copiaCard.classList.remove("is-active");
   filmCard.classList.remove("is-active");
 
-  // Aggiungi il genere alla card del film
+
   const genereFilm = document.createElement("p");
   genereFilm.innerHTML = `<strong>Genere:</strong> ${genereAppartenenza}`;
   copiaCard.appendChild(genereFilm);
@@ -108,11 +106,10 @@ aggiungiBtn.addEventListener("click", function () {
       const filmCardElement = filmCard as HTMLElement;
       let filmDaAggiungere: Film | null = null; // Tipo Film | null per l'inizializzazione
 
-      // Cerco il film nel catalogo
       catalogo.forEach(genere => {
         const film = genere.films.find(f => f.titolo === titoloFilm);
         if (film) {
-          filmDaAggiungere = film; // Se trovato, assegna il film
+          filmDaAggiungere = film;
         }
       });
 
@@ -120,7 +117,6 @@ aggiungiBtn.addEventListener("click", function () {
       const filmGiàAggiunto = playlistGenere.films.some(f => f.titolo === titoloFilm);
 
       if (!filmGiàAggiunto) {
-        // Se il film è stato trovato, lo aggiungiamo alla playlist
         if (filmDaAggiungere !== null) {
           aggiungiAllaPlaylist(filmDaAggiungere, filmCardElement);
         }

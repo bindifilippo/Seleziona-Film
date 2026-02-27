@@ -69,11 +69,12 @@ section {
   backdrop-filter: blur(12px);
 }
 
-.bottone-form{
+.titolo-form{
   display: flex;
   margin: 0 auto;
   justify-content: center;
 }
+
 
 h2 {
   margin: 0 0 16px 0;
