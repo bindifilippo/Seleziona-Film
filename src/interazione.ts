@@ -5,7 +5,7 @@ const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
 const playlist = document.getElementById("playlist") as HTMLElement;
 
 
-let genereAttivo = "Overview";
+let genereAttivo: String = "Overview";
 
 function renderGeneri() {
   cardGeneri.innerHTML = ""; 
