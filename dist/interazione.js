@@ -110,6 +110,30 @@ rimuoviBtn.addEventListener("click", function () {
         });
     }
 });
+const glasspane = document.getElementById("glasspane");
+const formSection = document.getElementById("form");
+const bottone = document.getElementById("attiva-form");
+glasspane.style.display = "none";
+formSection.style.display = "none";
+bottone.style.display = "block";
+function mostraForm() {
+    glasspane.style.display = "block";
+    formSection.style.display = "block";
+    bottone.style.display = "none";
+}
+function nascondiForm() {
+    glasspane.style.display = "none";
+    formSection.style.display = "none";
+    bottone.style.display = "block";
+}
+bottone?.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostraForm();
+});
+glasspane.addEventListener("click", (e) => {
+    if (e.target === glasspane)
+        nascondiForm();
+});
 function aggiornaUI() {
     const bottoni = cardGeneri.getElementsByClassName("genere");
     for (const btn of bottoni) {

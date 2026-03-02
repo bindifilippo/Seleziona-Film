@@ -142,6 +142,36 @@ rimuoviBtn.addEventListener("click", function(){
   }
 });
 
+const glasspane = document.getElementById("glasspane") as HTMLDivElement;
+const formSection = document.getElementById("form") as HTMLElement;
+const bottone = document.getElementById("attiva-form") as HTMLElement;
+
+glasspane.style.display = "none";
+formSection.style.display = "none";
+bottone.style.display= "block";
+
+function mostraForm(): void {
+  glasspane.style.display = "block";
+  formSection.style.display = "block";
+  bottone.style.display= "none";
+}
+
+function nascondiForm(): void {
+  glasspane.style.display = "none";
+  formSection.style.display = "none";
+  bottone.style.display= "block";
+}
+
+bottone?.addEventListener("click", (e) => {
+  e.preventDefault();
+  mostraForm();
+});
+
+glasspane.addEventListener("click", (e) => {
+  if (e.target === glasspane) nascondiForm();
+});
+
+
 
 function aggiornaUI() {
   const bottoni = cardGeneri.getElementsByClassName("genere");
@@ -164,6 +194,7 @@ function aggiornaUI() {
   }
 }
 
+
 function leggiEvento() {  
   const bottoni = cardGeneri.getElementsByClassName("genere");
   for (const btn of bottoni) { 
@@ -173,6 +204,7 @@ function leggiEvento() {
     });
   }
 }
+
 
 renderGeneri();
 renderFilmPerGenere();

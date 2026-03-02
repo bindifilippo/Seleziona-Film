@@ -20,33 +20,37 @@
         <section class="nav-menu">
           <h2>Generi</h2>
           <div id="generi" class="generi"></div>
-        </section>     
-        <div id="glasspane">
-          <section class ="bottone">
-            <h2 class="titolo-form">Inserisci nuovo film</h2>
-            <form id="aggiungi-film" action="#" method="post" >
-              <input type="text" 
-                    name="nome" 
-                    placeholder="Titolo"/>
-              <input type="text" 
-                    name="genere"
-                    placeholder="Regista" />
-              <input type="text" 
-                    name="genere"
-                    placeholder="Anno" />
-                <label for="genere">Genere</label>
-                <select id="genere" name="genere">
-                  <option value="drammatico">Drammatico</option>
-                  <option value="azione">Azione</option>
-                  <option value="commedia">Commedia</option>
-                </select>
-                <div class="buttons">
-                  <input type="submit" value="Inserisci" />
-                  <input type="reset" value="Cancella"/>
-                <div>
-            </form>
-          </section>
+        </section> 
+
+        <div id="attiva-form"> 
+          <h2 class="titolo-form">Inserisci nuovo film</h2>
         </div>
+          <div id="glasspane">
+            <section id="form">
+              <h2 class="titolo-form">Inserisci nuovo film</h2>
+              <form id="aggiungi-film" action="#" method="post" >
+                <input type="text" 
+                      name="nome" 
+                      placeholder="Titolo"/>
+                <input type="text" 
+                      name="genere"
+                      placeholder="Regista" />
+                <input type="text" 
+                      name="genere"
+                      placeholder="Anno" />
+                  <label for="genere">Genere</label>
+                  <select id="genere" name="genere">
+                    <option value="drammatico">Drammatico</option>
+                    <option value="azione">Azione</option>
+                    <option value="commedia">Commedia</option>
+                  </select>
+                  <div class="buttons">
+                    <input type="submit" value="Inserisci" />
+                    <input type="reset" value="Cancella"/>
+                  <div>
+              </form>
+            </section>
+          </div>
       </div>
       <section>
         <h2>Film per genere</h2>
