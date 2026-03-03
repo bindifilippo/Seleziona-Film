@@ -1,10 +1,5 @@
 //TO DO
 
-//migrare codice a typescript
-
-//form modale
-
-
 //inserire metodo fetch che prende i dati dal json
     //let x = fetch (...)
     //simulare inserimento dinamico dati.

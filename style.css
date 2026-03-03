@@ -285,6 +285,13 @@ h3 {
   height: auto;
 }
 
+select {
+    -webkit-appearance: none;  /* Safari and Chrome */
+    -moz-appearance: none;     /* Firefox */
+    appearance: none;          /* Other browsers */
+    background: url('./src/arrow.svg') no-repeat right center;
+}
+
 /* Layout moderno basato su spaziature */
 #aggiungi-film {
   padding: 20px;
@@ -313,7 +320,6 @@ input::placeholder {
   margin-top: 6px;
   font-size: 14px;
 }
-
 
 
 /* Gruppo bottoni */
