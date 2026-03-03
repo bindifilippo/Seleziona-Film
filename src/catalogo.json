@@ -1,0 +1,73 @@
+{
+  "catalogo": [
+    {
+      "genere": "Overview",
+      "films": []
+    },
+    {
+      "genere": "Drammatico",
+      "films": [
+        {
+          "titolo": "Petroliere",
+          "regista": "Paul Thomas Anderson",
+          "anno": "2007"
+        },
+        {
+          "titolo": "La La Land",
+          "regista": "Damien Chazelle",
+          "anno": "2016"
+        },
+        {
+          "titolo": "Forrest Gump",
+          "regista": "Robert Zemeckis",
+          "anno": "1994"
+        },
+        {
+          "titolo": "The Shawshank Redemption",
+          "regista": "Frank Darabont",
+          "anno": "1994"
+        }
+      ]
+    },
+    {
+      "genere": "Azione",
+      "films": [
+        {
+          "titolo": "Die Hard - Duri a morire",
+          "regista": "John McTiernan",
+          "anno": "1988"
+        },
+        {
+          "titolo": "Mad Max: Fury Road",
+          "regista": "George Miller",
+          "anno": "2015"
+        },
+        {
+          "titolo": "John Wick",
+          "regista": "Chad Stahelski",
+          "anno": "2014"
+        }
+      ]
+    },
+    {
+      "genere": "Commedia",
+      "films": [
+        {
+          "titolo": "Un'impresa da Dio",
+          "regista": "Tom Shadyac",
+          "anno": "2003"
+        },
+        {
+          "titolo": "Superbad",
+          "regista": "Greg Mottola",
+          "anno": "2007"
+        },
+        {
+          "titolo": "Una notte da leoni",
+          "regista": "Todd Phillips",
+          "anno": "2009"
+        }
+      ]
+    }
+  ]
+}

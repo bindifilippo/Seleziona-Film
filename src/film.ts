@@ -1,12 +1,11 @@
 //TO DO
 
 //inserire metodo fetch che prende i dati dal json
-    //let x = fetch (...)
     //simulare inserimento dinamico dati.
-        //attenzione alle interazioni sugli elementi (eventi asincroni) 
-            // foto lavagna 4 passagg
+    //attenzione alle interazioni sugli elementi (eventi asincroni) 
+     // foto lavagna 4 passagg
     
-
+/*
 class Film {
     titolo: string;
     regista: string;
@@ -85,4 +84,4 @@ catalogo.push(azione);
 catalogo.push(commedia);
 
 export {Film, Playlist, catalogo};
-
+*/
