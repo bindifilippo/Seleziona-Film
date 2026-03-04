@@ -122,20 +122,26 @@ let playlistGenere = new Playlist();
 
 function aggiungiAllaPlaylist(filmData: Film, filmCard: HTMLElement, catalogo: Genere[]) {
   let genereAppartenenza = "";
-   for (const g of catalogo) {
+
+  for (const g of catalogo) {
     if (g.films.some(f => f.titolo === filmData.titolo)) {
       genereAppartenenza = g.genere;
       break;
     }
   }
+
   playlistGenere.aggiungiFilm(filmData);
+
   const copiaCard = filmCard.cloneNode(true) as HTMLElement;
   copiaCard.classList.remove("is-active");
   filmCard.classList.remove("is-active");
+
   const genereFilm = document.createElement("p");
   genereFilm.innerHTML = `<strong>Genere:</strong> ${genereAppartenenza}`;
   copiaCard.appendChild(genereFilm);
+
   playlist.appendChild(copiaCard);
+
   copiaCard.addEventListener("click", () => {
     copiaCard.classList.toggle("is-active");
   });
