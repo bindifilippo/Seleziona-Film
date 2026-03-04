@@ -22,6 +22,7 @@ const cardGeneri = document.getElementById("generi") as HTMLElement;
 const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
 const playlist = document.getElementById("playlist") as HTMLElement;
 
+
 interface Film {
   titolo: string;
   regista: string;
@@ -36,7 +37,6 @@ interface Genere {
 async function inizializzaCatalogo(): Promise<Genere[]> {
   const response = await fetch("catalogo.json");
   const data = await response.json();
-
   const catalogo = data.catalogo;
 
   renderGeneri(catalogo);
@@ -159,21 +159,18 @@ async function main() {
     cardSelezionate.forEach((filmCard) => {
       const titoloFilm = filmCard.getAttribute("data-id");
       if (!titoloFilm) return;
-
       // Cerca il film nel catalogo
       let filmDaAggiungere: Film | null = null;
       for (const genere of catalogo) {
         const film = genere.films.find((f) => f.titolo === titoloFilm);
         if (film) { filmDaAggiungere = film; break; }
       }
-
       const giaInPlaylist = playlistGenere.films.some((f) => f.titolo === titoloFilm);
       if (giaInPlaylist) {
         (filmCard as HTMLElement).classList.remove("is-active");
         alert("Il film è già nella playlist!");
         return;
       }
-
       if (filmDaAggiungere) {
         aggiungiAllaPlaylist(filmDaAggiungere, filmCard as HTMLElement, catalogo);
       }
@@ -243,6 +240,4 @@ function aggiornaUI() {
   }
 }
 
-
-inizializzaCatalogo();
 main();

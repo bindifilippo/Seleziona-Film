@@ -195,7 +195,6 @@ function aggiornaUI() {
         }
     }
 }
-inizializzaCatalogo();
 main();
 export {};
 //# sourceMappingURL=interazione.js.map
