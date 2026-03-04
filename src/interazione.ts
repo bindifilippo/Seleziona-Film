@@ -1,16 +1,16 @@
-// Invio del form
+
 const formAggiungiFilm = document.getElementById("aggiungi-film") as HTMLFormElement;
 if (formAggiungiFilm) {
   formAggiungiFilm.addEventListener("submit", async (e) => {
     const formData = new FormData(formAggiungiFilm);
+    //fetch-richiesta http
+        //async-funzione che restituisce sempre una promise
+          //promise-promessa che un certo dato arriverà. //tre stati: in attesa, completato, errore
+            //await-aspetta il risultato della promise
     const response = await fetch(formAggiungiFilm.action, {
         body: formData
       });
-      const result = await response.json();
-      console.log("Risposta:", result);
       if (response.ok) {
-        alert("Film inviato con successo");
-        formAggiungiFilm.reset();
         nascondiForm();
       } else {
         alert("Errore nell'invio del film");
@@ -18,11 +18,9 @@ if (formAggiungiFilm) {
   });
 }
 
-
 const cardGeneri = document.getElementById("generi") as HTMLElement;
 const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
 const playlist = document.getElementById("playlist") as HTMLElement;
-
 
 interface Film {
   titolo: string;
@@ -35,19 +33,17 @@ interface Genere {
   films: Film[];
 }
 
-
 let catalogo: Genere[] = [];
 
-async function caricaCatalogo(): Promise<Genere[]> {
+async function inizializzaCatalogo():Promise<Genere[]> {
   let response = await fetch('catalogo.json');
   let data = await response.json();
-  return data.catalogo;
-}
+  catalogo = data.catalogo;
 
-async function inizializzaCatalogo() {
-  catalogo = await caricaCatalogo();
   renderGeneri(catalogo);
   renderFilmPerGenere(catalogo);
+
+  return catalogo;
 }
 
 let genereAttivo: string = "Overview";
@@ -125,13 +121,14 @@ class Playlist {
 
 let playlistGenere = new Playlist();
 
-function aggiungiAllaPlaylist(filmData: Film, filmCard: HTMLElement) {
+function aggiungiAllaPlaylist(filmData: Film, filmCard: HTMLElement, catalogo: Genere[]) {
   let genereAppartenenza = "";
-  catalogo.forEach(nome => {
-    if (nome.films.some(f => f.titolo === filmData.titolo)) {
-      genereAppartenenza = nome.genere;
+   for (const g of catalogo) {
+    if (g.films.some(f => f.titolo === filmData.titolo)) {
+      genereAppartenenza = g.genere;
+      break;
     }
-  });
+  }
   playlistGenere.aggiungiFilm(filmData);
   const copiaCard = filmCard.cloneNode(true) as HTMLElement;
   copiaCard.classList.remove("is-active");
@@ -164,7 +161,7 @@ aggiungiBtn.addEventListener("click", function () {
       const filmGiaAggiunto = playlistGenere.films.some(f => f.titolo === titoloFilm);
       if (!filmGiaAggiunto) {
         if (filmDaAggiungere !== null) {
-          aggiungiAllaPlaylist(filmDaAggiungere, filmCardElement);
+          aggiungiAllaPlaylist(filmDaAggiungere, filmCardElement, catalogo);
         }
       } else {
         filmCardElement.classList.remove("is-active");
