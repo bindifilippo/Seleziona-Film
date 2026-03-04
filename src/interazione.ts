@@ -1,7 +1,7 @@
 
 const formAggiungiFilm = document.getElementById("aggiungi-film") as HTMLFormElement;
 if (formAggiungiFilm) {
-  formAggiungiFilm.addEventListener("submit", async (e) => {
+  formAggiungiFilm.addEventListener("submit", async () => {
     const formData = new FormData(formAggiungiFilm);
     //fetch-richiesta http
         //async-funzione che restituisce sempre una promise
@@ -35,7 +35,7 @@ interface Genere {
 
 async function inizializzaCatalogo(): Promise<Genere[]> {
   const response = await fetch("catalogo.json");
-  const data: { catalogo: Genere[] } = await response.json();
+  const data = await response.json();
 
   const catalogo = data.catalogo;
 

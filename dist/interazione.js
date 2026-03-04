@@ -1,6 +1,6 @@
 const formAggiungiFilm = document.getElementById("aggiungi-film");
 if (formAggiungiFilm) {
-    formAggiungiFilm.addEventListener("submit", async (e) => {
+    formAggiungiFilm.addEventListener("submit", async () => {
         const formData = new FormData(formAggiungiFilm);
         //fetch-richiesta http
         //async-funzione che restituisce sempre una promise
