@@ -1,27 +1,20 @@
-// Gestione asincrona dell'invio del form
+// Invio del form
 const formAggiungiFilm = document.getElementById("aggiungi-film");
 if (formAggiungiFilm) {
     formAggiungiFilm.addEventListener("submit", async (e) => {
-        e.preventDefault();
         const formData = new FormData(formAggiungiFilm);
-        try {
-            const response = await fetch(formAggiungiFilm.action, {
-                method: "POST",
-                body: formData
-            });
-            const result = await response.json();
-            console.log("Risposta httpbin:", result);
-            if (response.ok) {
-                alert("Film inviato con successo (simulazione POST)");
-                formAggiungiFilm.reset();
-                nascondiForm();
-            }
-            else {
-                alert("Errore nell'invio del film");
-            }
+        const response = await fetch(formAggiungiFilm.action, {
+            body: formData
+        });
+        const result = await response.json();
+        console.log("Risposta:", result);
+        if (response.ok) {
+            alert("Film inviato con successo");
+            formAggiungiFilm.reset();
+            nascondiForm();
         }
-        catch (err) {
-            alert("Errore di rete nell'invio del film");
+        else {
+            alert("Errore nell'invio del film");
         }
     });
 }
@@ -30,15 +23,14 @@ const cardFilm = document.getElementById("contenitore-blocchi");
 const playlist = document.getElementById("playlist");
 let catalogo = [];
 async function caricaCatalogo() {
-    const response = await fetch('src/catalogo.json');
-    const data = await response.json();
+    let response = await fetch('catalogo.json');
+    let data = await response.json();
     return data.catalogo;
 }
 async function inizializzaCatalogo() {
     catalogo = await caricaCatalogo();
     renderGeneri(catalogo);
     renderFilmPerGenere(catalogo);
-    leggiEvento();
 }
 let genereAttivo = "Overview";
 function renderGeneri(catalogo) {
@@ -149,7 +141,7 @@ aggiungiBtn.addEventListener("click", function () {
 });
 const rimuoviBtn = document.getElementById("rimuovi");
 rimuoviBtn.addEventListener("click", function () {
-    const cardSelezionate = document.querySelectorAll("#playlist .scheda-film.is-active");
+    const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
     if (cardSelezionate.length > 0) {
         cardSelezionate.forEach(filmCard => {
             const titoloFilm = filmCard.getAttribute("data-id");
@@ -202,9 +194,6 @@ function aggiornaUI() {
             bloccoGenere.style.display = "none";
         }
     }
-}
-function leggiEvento() {
-    // Eventi già gestiti in renderGeneri
 }
 inizializzaCatalogo();
 export {};

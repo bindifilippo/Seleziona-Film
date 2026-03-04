@@ -1,16 +1,13 @@
-// Gestione asincrona dell'invio del form
+// Invio del form
 const formAggiungiFilm = document.getElementById("aggiungi-film") as HTMLFormElement;
 if (formAggiungiFilm) {
   formAggiungiFilm.addEventListener("submit", async (e) => {
-    e.preventDefault();
     const formData = new FormData(formAggiungiFilm);
-    try {
-      const response = await fetch(formAggiungiFilm.action, {
-        method: "POST",
+    const response = await fetch(formAggiungiFilm.action, {
         body: formData
       });
       const result = await response.json();
-      console.log("Risposta httpbin:", result);
+      console.log("Risposta:", result);
       if (response.ok) {
         alert("Film inviato con successo");
         formAggiungiFilm.reset();
@@ -18,9 +15,6 @@ if (formAggiungiFilm) {
       } else {
         alert("Errore nell'invio del film");
       }
-    } catch (err) {
-      alert("Errore di rete nell'invio del film");
-    }
   });
 }
 
@@ -45,8 +39,8 @@ interface Genere {
 let catalogo: Genere[] = [];
 
 async function caricaCatalogo(): Promise<Genere[]> {
-  const response = await fetch('src/catalogo.json');
-  const data = await response.json();
+  let response = await fetch('catalogo.json');
+  let data = await response.json();
   return data.catalogo;
 }
 
@@ -54,7 +48,6 @@ async function inizializzaCatalogo() {
   catalogo = await caricaCatalogo();
   renderGeneri(catalogo);
   renderFilmPerGenere(catalogo);
-  leggiEvento();
 }
 
 let genereAttivo: string = "Overview";
@@ -185,7 +178,7 @@ aggiungiBtn.addEventListener("click", function () {
 
 const rimuoviBtn = document.getElementById("rimuovi") as HTMLElement;
 rimuoviBtn.addEventListener("click", function () {
-  const cardSelezionate = document.querySelectorAll("#playlist .scheda-film.is-active");
+  const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
   if (cardSelezionate.length > 0) {
     cardSelezionate.forEach(filmCard => {
       const titoloFilm = filmCard.getAttribute("data-id");
@@ -244,12 +237,6 @@ function aggiornaUI() {
       bloccoGenere.style.display = "none";
     }
   }
-}
-
-
-
-function leggiEvento() {
-  // Eventi già gestiti in renderGeneri
 }
 
 
