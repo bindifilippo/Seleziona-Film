@@ -1,4 +1,3 @@
-/*seleziono tutti gli elementi e includo padding e bordo nelle misure width e height per un layout più gestibiel*/
 * {
  box-sizing: border-box;
 }
@@ -18,7 +17,6 @@
   --gap-lg:30px;
 }
 
-/*radice della pagina*/
 html {
   min-height: 100%;
   background:

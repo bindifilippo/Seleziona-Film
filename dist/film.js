@@ -1,9 +1,4 @@
-//TO DO
 export {};
-//inserire metodo fetch che prende i dati dal json
-//simulare inserimento dinamico dati.
-//attenzione alle interazioni sugli elementi (eventi asincroni) 
-// foto lavagna 4 passagg
 /*
 class Film {
     titolo: string;

@@ -1,28 +1,7 @@
+// Miglioramenti
+  // il programma deve riconoscere il film selezionato attraverso una variabile e non html
+    // fetch su più json e richiamarli quando serve  
 
-const formAggiungiFilm = document.getElementById("aggiungi-film") as HTMLFormElement;
-if (formAggiungiFilm) {
-  formAggiungiFilm.addEventListener("submit", async () => {
-    //serializzo i campi del form automaticamente
-    const formData = new FormData(formAggiungiFilm);
-    //fetch-richiesta http
-        //async-funzione che restituisce sempre una promise
-          //promise-promessa che un certo dato arriverà. //tre stati: in attesa, completato, errore
-            //await-aspetta il risultato della promise
-    const response = await fetch(formAggiungiFilm.action, {
-        body: formData
-      });
-      if (response.ok) {
-        nascondiForm();
-      } else {
-        alert("Errore nell'invio del film");
-      }
-  });
-}
-
-const cardGeneri = document.getElementById("generi") as HTMLElement;
-const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
-
-//definire struttura
 interface Film {
   titolo: string;
   regista: string;
@@ -46,12 +25,16 @@ async function inizializzaCatalogo(): Promise<Genere[]> {
   return catalogo;
 }
 
+const cardGeneri = document.getElementById("generi") as HTMLElement;
+const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
+
+
 let genereAttivo: string = "Overview";
 
 function renderGeneri(catalogo: Genere[]) {
   //cardGeneri.innerHTML = "";
   catalogo.forEach((nome) => {
-    const bottone = document.createElement("div");
+    const bottone: HTMLDivElement = document.createElement("div");
     bottone.id = nome.genere;
     bottone.className = "genere";
     bottone.textContent = nome.genere;
@@ -63,7 +46,6 @@ function renderGeneri(catalogo: Genere[]) {
       genereAttivo = bottone.id;
       aggiornaUI();
     });
-    
     cardGeneri.appendChild(bottone);
   });
 }
@@ -74,28 +56,27 @@ function renderFilmPerGenere(catalogo: Genere[]) {
     if (nome.genere === "Overview") {
       return;
     }
-    const blocco = document.createElement("div");
+    const blocco: HTMLDivElement = document.createElement("div");
     blocco.id = nome.genere;
     blocco.className = "blocco-genere";
     cardFilm.appendChild(blocco);
 
-    const titolo = document.createElement("h3");
+    const titolo: HTMLHeadingElement = document.createElement("h3");
     titolo.textContent = nome.genere;
     blocco.appendChild(titolo);
 
-    const griglia = document.createElement("div");
+    const griglia: HTMLDivElement = document.createElement("div");
     griglia.className = "film";
     blocco.appendChild(griglia);
 
     nome.films.forEach((filmData) => {
-      const card = document.createElement("div");
+      const card: HTMLDivElement = document.createElement("div");
       card.className = "scheda-film";
       card.setAttribute("data-id", filmData.titolo);
       card.innerHTML =
         "<p><strong>Titolo:</strong> " + filmData.titolo + "</p>" +
         "<p><strong>Regista:</strong> " + filmData.regista + "</p>" +
         "<p><strong>Anno:</strong> " + filmData.anno + "</p>";
-
       griglia.appendChild(card);
       card.addEventListener("click", function () {
         card.classList.toggle("is-active");
@@ -149,14 +130,59 @@ bottone.addEventListener("click", (e) => {
   mostraForm();
 });
 
-glasspane.addEventListener("click", (e) => {
-  if (e.target === glasspane) nascondiForm();
+glasspane.addEventListener("click", function (e) {
+  if (e.target === glasspane) {
+    nascondiForm();
+  }
 });
 
+const resetBtn = document.getElementById('cancella') as HTMLElement;
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+    nascondiForm();
+  });
+}
 
 
-const playlist = document.getElementById("playlist") as HTMLElement;
+const formAggiungiFilm = document.getElementById("aggiungi-film") as HTMLFormElement;
+if (formAggiungiFilm) {
+  formAggiungiFilm.addEventListener("submit", async () => {
+    //serializzo i campi del form automaticamente
+    const formData = new FormData(formAggiungiFilm);
+    //fetch-richiesta http
+        //async-funzione che restituisce sempre una promise
+          //promise-promessa che un certo dato arriverà. //tre stati: in attesa, completato, errore
+            //await-aspetta il risultato della promise
+    const response = await fetch(formAggiungiFilm.action, {
+        body: formData
+      });
+      if (response.ok) {
+        nascondiForm();
+      } else {
+        alert("Errore nell'invio del film");
+      }
+  });
+}
+
+const rimuoviBtn = document.getElementById("rimuovi") as HTMLElement;
+
+rimuoviBtn.addEventListener("click", () => {
+  const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
+  cardSelezionate.forEach((filmCard) => {
+    //const titoloFilm = filmCard.getAttribute("data-id")!;
+    filmCard.remove();
+    //playlistGenere.rimuoviFilm(titoloFilm);
+  });
+});
+
+inizializzaCatalogo();
+
+
+
+
+//const playlist = document.getElementById("playlist") as HTMLElement;
   
+/*
 class Playlist {
   films: Film[] = [];
   aggiungiFilm(film: Film): void {
@@ -173,16 +199,13 @@ let playlistGenere = new Playlist();
 
 function aggiungiAllaPlaylist(filmData: Film, filmCard: HTMLElement, catalogo: Genere[]) {
   let genereAppartenenza = "";
-
   for (const g of catalogo) {
     if (g.films.some(f => f.titolo === filmData.titolo)) {
       genereAppartenenza = g.genere;
       break;
     }
   }
-
   playlistGenere.aggiungiFilm(filmData);
-
   const copiaCard = filmCard.cloneNode(true) as HTMLElement;
   copiaCard.classList.remove("is-active");
   filmCard.classList.remove("is-active");
@@ -195,14 +218,12 @@ function aggiungiAllaPlaylist(filmData: Film, filmCard: HTMLElement, catalogo: G
   });
   playlist.appendChild(copiaCard);
 }
+*/
 
 
-
-const catalogo = await inizializzaCatalogo();
-const aggiungiBtn = document.getElementById("aggiungi") as HTMLElement;
-const rimuoviBtn = document.getElementById("rimuovi") as HTMLElement;
-  
-
+//const catalogo = await inizializzaCatalogo();
+//const aggiungiBtn = document.getElementById("aggiungi") as HTMLElement;  
+/*
 aggiungiBtn.addEventListener("click", () => {
   const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
   cardSelezionate.forEach((filmCard) => {
@@ -226,13 +247,4 @@ aggiungiBtn.addEventListener("click", () => {
       aggiungiAllaPlaylist(filmDaAggiungere, filmCard as HTMLElement, catalogo);
     }
   });
-});
-
-rimuoviBtn.addEventListener("click", () => {
-  const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
-  cardSelezionate.forEach((filmCard) => {
-    const titoloFilm = filmCard.getAttribute("data-id")!;
-    filmCard.remove();
-    playlistGenere.rimuoviFilm(titoloFilm);
-  });
-});
+});*/
