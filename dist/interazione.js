@@ -1,3 +1,6 @@
+// Miglioramenti
+// il programma deve riconoscere il film selezionato attraverso una variabile e non html
+// fetch su più json e richiamarli quando serve  
 async function inizializzaCatalogo() {
     //recupero dati
     const response = await fetch("catalogo.json");
@@ -29,6 +32,10 @@ function renderGeneri(catalogo) {
         cardGeneri.appendChild(bottone);
     });
 }
+//associa una chiave a un valore.
+const cardById = new Map();
+//elenco in cui non possono esserci duplicati.
+const filmSelezionati = new Set();
 function renderFilmPerGenere(catalogo) {
     //cardFilm.innerHTML = "";
     catalogo.forEach((nome) => {
@@ -47,15 +54,23 @@ function renderFilmPerGenere(catalogo) {
         blocco.appendChild(griglia);
         nome.films.forEach((filmData) => {
             const card = document.createElement("div");
+            const id = filmData.titolo;
             card.className = "scheda-film";
-            card.setAttribute("data-id", filmData.titolo);
             card.innerHTML =
                 "<p><strong>Titolo:</strong> " + filmData.titolo + "</p>" +
                     "<p><strong>Regista:</strong> " + filmData.regista + "</p>" +
                     "<p><strong>Anno:</strong> " + filmData.anno + "</p>";
+            cardById.set(id, card);
             griglia.appendChild(card);
-            card.addEventListener("click", function () {
-                card.classList.toggle("is-active");
+            card.addEventListener("click", () => {
+                if (filmSelezionati.has(id)) {
+                    filmSelezionati.delete(id);
+                    card.classList.remove("is-active");
+                }
+                else {
+                    filmSelezionati.add(id);
+                    card.classList.add("is-active");
+                }
             });
         });
     });
@@ -133,12 +148,11 @@ if (formAggiungiFilm) {
 }
 const rimuoviBtn = document.getElementById("rimuovi");
 rimuoviBtn.addEventListener("click", () => {
-    const cardSelezionate = document.querySelectorAll(".scheda-film.is-active");
-    cardSelezionate.forEach((filmCard) => {
-        //const titoloFilm = filmCard.getAttribute("data-id")!;
-        filmCard.remove();
-        //playlistGenere.rimuoviFilm(titoloFilm);
-    });
+    for (const id of filmSelezionati) {
+        cardById.get(id)?.remove();
+        cardById.delete(id);
+    }
+    filmSelezionati.clear();
 });
 inizializzaCatalogo();
 export {};
