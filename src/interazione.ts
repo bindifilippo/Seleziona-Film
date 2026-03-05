@@ -40,13 +40,13 @@ let genereAttivo: string = "Overview";
 
 function renderGeneri(genres: Genere[]) {
   //cardGeneri.innerHTML = "";
-  genres.forEach((genres) => {
+  genres.forEach((genere) => {
     const bottone: HTMLDivElement = document.createElement("div");
-    bottone.id = genres.name;
+    bottone.id = genere.name;
     bottone.className = "genere";
-    bottone.textContent = genres.name;
+    bottone.textContent = genere.name;
 
-    if (genres.name === genereAttivo) {
+    if (genere.name === genereAttivo) {
       bottone.classList.add("is-active");
     }
     bottone.addEventListener("click", () => {

@@ -15,12 +15,12 @@ const cardFilm = document.getElementById("contenitore-blocchi");
 let genereAttivo = "Overview";
 function renderGeneri(genres) {
     //cardGeneri.innerHTML = "";
-    genres.forEach((genres) => {
+    genres.forEach((genere) => {
         const bottone = document.createElement("div");
-        bottone.id = genres.name;
+        bottone.id = genere.name;
         bottone.className = "genere";
-        bottone.textContent = genres.name;
-        if (genres.name === genereAttivo) {
+        bottone.textContent = genere.name;
+        if (genere.name === genereAttivo) {
             bottone.classList.add("is-active");
         }
         bottone.addEventListener("click", () => {
