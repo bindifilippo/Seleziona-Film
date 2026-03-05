@@ -1,73 +1,80 @@
 {
-  "catalogo": [
+  "genres": [
+    { "id": "Overview", "name":"Overview"  },
+    { "id": "Drammatico", "name": "Drammatico" },
+    { "id": "Azione", "name": "Azione" },
+    { "id": "Commedia", "name": "Commedia" }
+  ],
+  "films": [
     {
-      "genere": "Overview",
-      "films": []
+      "id": "petroliere-2007",
+      "title": "Petroliere",
+      "director": "Paul Thomas Anderson",
+      "year": 2007,
+      "genreIds": ["Drammatico"]
     },
     {
-      "genere": "Drammatico",
-      "films": [
-        {
-          "titolo": "Petroliere",
-          "regista": "Paul Thomas Anderson",
-          "anno": "2007"
-        },
-        {
-          "titolo": "La La Land",
-          "regista": "Damien Chazelle",
-          "anno": "2016"
-        },
-        {
-          "titolo": "Forrest Gump",
-          "regista": "Robert Zemeckis",
-          "anno": "1994"
-        },
-        {
-          "titolo": "The Shawshank Redemption",
-          "regista": "Frank Darabont",
-          "anno": "1994"
-        }
-      ]
+      "id": "la-la-land-2016",
+      "title": "La La Land",
+      "director": "Damien Chazelle",
+      "year": 2016,
+      "genreIds": ["Drammatico"]
     },
     {
-      "genere": "Azione",
-      "films": [
-        {
-          "titolo": "Die Hard - Duri a morire",
-          "regista": "John McTiernan",
-          "anno": "1988"
-        },
-        {
-          "titolo": "Mad Max: Fury Road",
-          "regista": "George Miller",
-          "anno": "2015"
-        },
-        {
-          "titolo": "John Wick",
-          "regista": "Chad Stahelski",
-          "anno": "2014"
-        }
-      ]
+      "id": "forrest-gump-1994",
+      "title": "Forrest Gump",
+      "director": "Robert Zemeckis",
+      "year": 1994,
+      "genreIds": ["Drammatico"]
     },
     {
-      "genere": "Commedia",
-      "films": [
-        {
-          "titolo": "Un'impresa da Dio",
-          "regista": "Tom Shadyac",
-          "anno": "2003"
-        },
-        {
-          "titolo": "Superbad",
-          "regista": "Greg Mottola",
-          "anno": "2007"
-        },
-        {
-          "titolo": "Una notte da leoni",
-          "regista": "Todd Phillips",
-          "anno": "2009"
-        }
-      ]
+      "id": "the-shawshank-redemption-1994",
+      "title": "The Shawshank Redemption",
+      "director": "Frank Darabont",
+      "year": 1994,
+      "genreIds": ["Drammatico"]
+    },
+    {
+      "id": "die-hard-1988",
+      "title": "Die Hard - Duri a morire",
+      "director": "John McTiernan",
+      "year": 1988,
+      "genreIds": ["Azione"]
+    },
+    {
+      "id": "mad-max-fury-road-2015",
+      "title": "Mad Max: Fury Road",
+      "director": "George Miller",
+      "year": 2015,
+      "genreIds": ["Azione"]
+    },
+    {
+      "id": "john-wick-2014",
+      "title": "John Wick",
+      "director": "Chad Stahelski",
+      "year": 2014,
+      "genreIds": ["Azione"]
+    },
+    {
+      "id": "unimpresa-da-dio-2003",
+      "title": "Un'impresa da Dio",
+      "director": "Tom Shadyac",
+      "year": 2003,
+      "genreIds": ["Commedia"]
+    },
+    {
+      "id": "superbad-2007",
+      "title": "Superbad",
+      "director": "Greg Mottola",
+      "year": 2007,
+      "genreIds": ["Commedia"]
+    },
+    {
+      "id": "una-notte-da-leoni-2009",
+      "title": "Una notte da leoni",
+      "director": "Todd Phillips",
+      "year": 2009,
+      "genreIds": ["Commedia"]
     }
   ]
 }

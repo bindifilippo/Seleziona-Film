@@ -1,28 +1,26 @@
 // Miglioramenti
-// il programma deve riconoscere il film selezionato attraverso una variabile e non html
-// fetch su più json e richiamarli quando serve  
+// il programma deve riconoscere il film selezionato attraverso una variabile e non html (in progress..)
+// fetch su più json e richiamarli quando serve  (da fare)
 async function inizializzaCatalogo() {
     //recupero dati
     const response = await fetch("catalogo.json");
     const data = await response.json();
-    const catalogo = data.catalogo;
-    //rendering
-    renderGeneri(catalogo);
-    renderFilmPerGenere(catalogo);
+    renderGeneri(data.genres);
+    renderFilmPerGenere(data.genres, data.films);
     //restituzione dati
-    return catalogo;
+    return data;
 }
 const cardGeneri = document.getElementById("generi");
 const cardFilm = document.getElementById("contenitore-blocchi");
 let genereAttivo = "Overview";
-function renderGeneri(catalogo) {
+function renderGeneri(genres) {
     //cardGeneri.innerHTML = "";
-    catalogo.forEach((nome) => {
+    genres.forEach((genres) => {
         const bottone = document.createElement("div");
-        bottone.id = nome.genere;
+        bottone.id = genres.name;
         bottone.className = "genere";
-        bottone.textContent = nome.genere;
-        if (nome.genere === genereAttivo) {
+        bottone.textContent = genres.name;
+        if (genres.name === genereAttivo) {
             bottone.classList.add("is-active");
         }
         bottone.addEventListener("click", () => {
@@ -36,30 +34,31 @@ function renderGeneri(catalogo) {
 const cardById = new Map();
 //elenco in cui non possono esserci duplicati.
 const filmSelezionati = new Set();
-function renderFilmPerGenere(catalogo) {
+function renderFilmPerGenere(genres, films) {
     //cardFilm.innerHTML = "";
-    catalogo.forEach((nome) => {
-        if (nome.genere === "Overview") {
+    genres.forEach((genere) => {
+        if (genere.id === "Overview") {
             return;
         }
         const blocco = document.createElement("div");
-        blocco.id = nome.genere;
+        blocco.id = genere.id;
         blocco.className = "blocco-genere";
         cardFilm.appendChild(blocco);
         const titolo = document.createElement("h3");
-        titolo.textContent = nome.genere;
+        titolo.textContent = genere.id;
         blocco.appendChild(titolo);
         const griglia = document.createElement("div");
         griglia.className = "film";
         blocco.appendChild(griglia);
-        nome.films.forEach((filmData) => {
+        const filmsDelGenere = films.filter((f) => f.genreIds.includes(genere.id));
+        filmsDelGenere.forEach((filmData) => {
             const card = document.createElement("div");
-            const id = filmData.titolo;
+            const id = filmData.id;
             card.className = "scheda-film";
             card.innerHTML =
-                "<p><strong>Titolo:</strong> " + filmData.titolo + "</p>" +
-                    "<p><strong>Regista:</strong> " + filmData.regista + "</p>" +
-                    "<p><strong>Anno:</strong> " + filmData.anno + "</p>";
+                "<p><strong>Titolo:</strong> " + filmData.title + "</p>" +
+                    "<p><strong>Regista:</strong> " + filmData.director + "</p>" +
+                    "<p><strong>Anno:</strong> " + filmData.year + "</p>";
             cardById.set(id, card);
             griglia.appendChild(card);
             card.addEventListener("click", () => {
@@ -129,12 +128,7 @@ if (resetBtn) {
 const formAggiungiFilm = document.getElementById("aggiungi-film");
 if (formAggiungiFilm) {
     formAggiungiFilm.addEventListener("submit", async () => {
-        //serializzo i campi del form automaticamente
         const formData = new FormData(formAggiungiFilm);
-        //fetch-richiesta http
-        //async-funzione che restituisce sempre una promise
-        //promise-promessa che un certo dato arriverà. //tre stati: in attesa, completato, errore
-        //await-aspetta il risultato della promise
         const response = await fetch(formAggiungiFilm.action, {
             body: formData
         });
