@@ -5,17 +5,17 @@ async function inizializzaCatalogo() {
     //recupero dati
     const response = await fetch("catalogo.json");
     const data = await response.json();
-    renderGeneri(data.genres);
-    renderFilmPerGenere(data.genres, data.films);
+    renderGeneri(data.generi);
+    renderFilmPerGenere(data.generi, data.films);
     //restituzione dati
     return data;
 }
 const cardGeneri = document.getElementById("generi");
 const cardFilm = document.getElementById("contenitore-blocchi");
 let genereAttivo = "Overview";
-function renderGeneri(genres) {
+function renderGeneri(generi) {
     //cardGeneri.innerHTML = "";
-    genres.forEach((genere) => {
+    generi.forEach((genere) => {
         const bottone = document.createElement("div");
         bottone.id = genere.name;
         bottone.className = "genere";
@@ -34,9 +34,9 @@ function renderGeneri(genres) {
 const cardById = new Map();
 //elenco in cui non possono esserci duplicati.
 const filmSelezionati = new Set();
-function renderFilmPerGenere(genres, films) {
+function renderFilmPerGenere(generi, films) {
     //cardFilm.innerHTML = "";
-    genres.forEach((genere) => {
+    generi.forEach((genere) => {
         if (genere.id === "Overview") {
             return;
         }

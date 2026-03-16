@@ -1,5 +1,5 @@
 {
-  "genres": [
+  "generi": [
     { "id": "Overview", "name":"Overview"  },
     { "id": "Drammatico", "name": "Drammatico" },
     { "id": "Azione", "name": "Azione" },

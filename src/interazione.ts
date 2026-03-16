@@ -1,9 +1,30 @@
 // Miglioramenti
   // il programma deve riconoscere il film selezionato attraverso una variabile e non html (in progress..)
-    // fetch su più json e richiamarli quando serve  (da fare)
+    // ottimizzazione json  (in proggress...)
+      //chiamate REST API (da fare)
 
+      
+//HTTP server 
+// Installare intelli J
+  //creare progetto su Springboot
+    //creare nome progetto e scegliere cartella
+      //scaricare pacchetto spring web
 
-    //chiamate REST API
+      //cartella .mvn-cartella di eseguibile di maven
+      //mvnw e mvnw.cmd comandu per lanciare programma da shell e windows
+
+      //pom.xml file di configurazione web (mavel non usa json ma xml)
+      //dipendency per le nuove dipendenze
+      //build quando java viene compilato dalla JVM
+
+      //src
+        //main
+          //java>primo.application (nostro main)
+
+        //resources
+          //application.properties
+            //server.port 8654
+    
 interface Genere {
   id: string;    
   name: string;  
@@ -18,7 +39,7 @@ interface Film {
 }
 
 interface Catalogo {
-  genres: Genere[];
+  generi: Genere[];
   films: Film[];
 }
 
@@ -26,8 +47,8 @@ async function inizializzaCatalogo(): Promise<Catalogo> {
   //recupero dati
   const response = await fetch("catalogo.json");
   const data: Catalogo = await response.json();
-  renderGeneri(data.genres);
-  renderFilmPerGenere(data.genres, data.films);
+  renderGeneri(data.generi);
+  renderFilmPerGenere(data.generi, data.films);
   //restituzione dati
   return data;
 }
@@ -38,9 +59,9 @@ const cardFilm = document.getElementById("contenitore-blocchi") as HTMLElement;
 
 let genereAttivo: string = "Overview";
 
-function renderGeneri(genres: Genere[]) {
+function renderGeneri(generi: Genere[]) {
   //cardGeneri.innerHTML = "";
-  genres.forEach((genere) => {
+  generi.forEach((genere) => {
     const bottone: HTMLDivElement = document.createElement("div");
     bottone.id = genere.name;
     bottone.className = "genere";
@@ -62,9 +83,9 @@ const cardById = new Map<string, HTMLDivElement>();
 //elenco in cui non possono esserci duplicati.
 const filmSelezionati = new Set<string>();
 
-function renderFilmPerGenere( genres: Genere[], films: Film[]) {
+function renderFilmPerGenere( generi: Genere[], films: Film[]) {
   //cardFilm.innerHTML = "";
-  genres.forEach((genere) => {
+  generi.forEach((genere) => {
     if (genere.id === "Overview") {return;}
 
     const blocco: HTMLDivElement = document.createElement("div");
