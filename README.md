@@ -1,6 +1,6 @@
 ##  Seleziona Film
 
-Questa applicazione è un progetto didattico che permette di esplorare e selezionare film suddivisi per genere.
+Questa applicazione è un progetto didattico che permette di selezionare film suddivisi per genere.
 
 Il sistema è composto da:
 
