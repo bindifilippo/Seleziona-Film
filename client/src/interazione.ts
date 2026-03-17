@@ -45,7 +45,7 @@ interface Catalogo {
 
 async function inizializzaCatalogo(): Promise<Catalogo> {
   //recupero dati
-  const response = await fetch("catalogo.json");
+  const response = await fetch("http://localhost:8080/catalogo");
   const data: Catalogo = await response.json();
   renderGeneri(data.generi);
   renderFilmPerGenere(data.generi, data.films);
