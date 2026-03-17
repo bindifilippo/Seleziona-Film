@@ -1,13 +1,13 @@
-package it.unito.seleziona_film;
+package it.unito.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SelezionaFilmApplication {
+public class ServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SelezionaFilmApplication.class, args);
+		SpringApplication.run(ServerApplication.class, args);
 	}
 
 }
