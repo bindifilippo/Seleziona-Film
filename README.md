@@ -1,14 +1,30 @@
 ##  Seleziona Film
 
-Questa applicazione è un progetto didattico che permette di selezionare film suddivisi per genere.
+ITA
+Obiettivo progetto: esercitarsi nella costruzione di un’architettura client-server, collegando un frontend dinamico a un backend con API REST e Java.
+Scopo: vedere film per genere.
 
-Il sistema è composto da:
+Tecnologie:
+- **Frontend (TypeScript)**: JavaScript gestisce interfaccia utente - UI - e interazioni. FrontEnd consumando i dati forniti dal backend.
 
-- **Frontend (TypeScript)**: gestisce l’interfaccia utente e le interazioni, consumando i dati forniti dal backend.
-- **Backend (Spring Boot)**: espone API REST che leggono i dati da un file JSON e li rendono disponibili al frontend.
+- **Backend (Spring Boot)**: Esposizione API REST per leggere dati da un file JSON con Java.
 
 Il backend fornisce endpoint come:
 - `/films` → restituisce tutti i film  
 - `/films/drammatici` → restituisce i film che nel catalogo appartengono al genere drammatico  
 
-L’obiettivo del progetto è esercitarsi nella costruzione di un’architettura client-server, collegando un frontend dinamico a un backend Java tramite API REST.
+
+ENG
+Project goal: Practice building a client-server architecture by connecting a dynamic frontend to a backend with REST APIs and Java.
+
+Purpose: To see films by genre.
+
+Technologies:
+
+- **Frontend (TypeScript)**: JavaScript handles user interface - UI - and interactions. FrontEnd consuming data provided by the backend.
+
+- **Backend (Spring Boot)**: REST API exposure to read data from a JSON file with Java.
+
+The backend provides endpoints such as:
+- '/films' → returns all movies  
+- '/films/dramatics' → returns films that belong to the drama genre in the catalog
