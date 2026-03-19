@@ -1,10 +1,10 @@
 ##  Seleziona Film
 
-ITA
+ITA <br>
 Obiettivo progetto: esercitarsi nella costruzione di un’architettura client-server, collegando un frontend dinamico a un backend con API REST e Java.
 Scopo: vedere film per genere.
 
-Tecnologie:
+Tecnologie:<br>
 - **Frontend (TypeScript)**: JavaScript gestisce interfaccia utente - UI - e interazioni. FrontEnd consumando i dati forniti dal backend.
 
 - **Backend (Spring Boot)**: Esposizione API REST per leggere dati da un file JSON con Java.
@@ -14,7 +14,7 @@ Il backend fornisce endpoint come:
 - `/films/drammatici` → restituisce i film che nel catalogo appartengono al genere drammatico  
 
 
-ENG
+ENG <br>
 Project goal: Practice building a client-server architecture by connecting a dynamic frontend to a backend with REST APIs and Java.
 
 Purpose: To see films by genre.
