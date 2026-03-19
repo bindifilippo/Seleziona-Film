@@ -1,7 +1,7 @@
 ##  Seleziona Film
 
 ITA <br>
-Obiettivo progetto: esercitarsi nella costruzione di un’architettura client-server, collegando un frontend dinamico a un backend con API REST e Java.<br>
+Obiettivo progetto: esercitarsi nella costruzione di un’architettura client-server, collegando un frontend dinamico a un backend con API REST e Java.
 Scopo: vedere film per genere.
 
 Tecnologie:<br>
