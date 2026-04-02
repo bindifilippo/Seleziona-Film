@@ -1,30 +1,72 @@
-##  Seleziona Film
+# Seleziona Film
 
-ITA <br>
-Obiettivo progetto: esercitarsi nella costruzione di un’architettura client-server, collegando un frontend dinamico a un backend Java con API REST.
-Scopo: vedere film per genere.
+## Overview
 
-Tecnologie:<br>
-- **Frontend (TypeScript)**: JavaScript gestisce interfaccia utente - UI - e interazioni. FrontEnd consumando i dati forniti dal backend.<br>
+**Seleziona Film** is a simple full-stack project built to practice a **client-server architecture** with a frontend that consumes data from a Java backend through **REST APIs**.
 
-- **Backend (Spring Boot)**: Esposizione API REST per leggere dati da un file JSON con Java.<br>
+The idea behind the project is straightforward: display a movie catalog and allow users to explore films by genre. The backend serves structured movie data from a JSON file, while the frontend handles the user interface and interaction logic.
 
-Il backend fornisce endpoint come:<br>
-- `/films` → restituisce tutti i film  <br>
-- `/films/drammatici` → restituisce i film che nel catalogo appartengono al genere drammatico  <br>
+This project is mainly focused on understanding how the frontend and backend communicate, how to organize data, and how to build a small but complete REST-based application.
 
+---
 
-ENG <br>
-Project goal: Practice building a client-server architecture by connecting a dynamic frontend to a backend with REST APIs and Java.<br>
+## Features
 
-Purpose: To see films by genre.<br>
+- Fetches a movie catalog from a backend API
+- Displays movie genres dynamically
+- Renders films grouped by genre
+- Highlights the active genre in the UI
+- Separates frontend and backend into independent folders
+- Uses a JSON file as a lightweight data source
+- Exposes REST endpoints for the full catalog and filtered movie lists
 
-Technologies:<br>
+---
 
-- **Frontend (TypeScript)**: JavaScript handles user interface - UI - and interactions. FrontEnd consuming data provided by the backend.<br>
+## Technologies
 
-- **Backend (Spring Boot)**: REST API exposure to read data from a JSON file with Java.<br>
+### Frontend
+- TypeScript
+- HTML
+- CSS
+- Fetch API
 
-The backend provides endpoints such as:
-- '/films' → returns all movies  
-- '/films/dramatics' → returns films that belong to the drama genre in the catalog
+### Backend
+- Java 17
+- Spring Boot
+- Spring Web MVC
+- Jackson JSON mapping
+- Maven
+
+---
+
+## Project Structure
+
+```bash
+Seleziona-Film/
+├── client/
+│   ├── src/
+│   │   ├── interaction UI.ts
+│   │   ├── object.ts
+│   │   └── arrow.svg
+│   ├── main.html
+│   ├── style.css
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── server/
+│   ├── src/main/java/it/unito/server/
+│   │   ├── ServerApplication.java
+│   │   ├── controllers/
+│   │   │   └── FilmController.java
+│   │   └── model/
+│   │       ├── Catalogo.java
+│   │       ├── Film.java
+│   │       └── Genere.java
+│   ├── src/main/resources/
+│   │   ├── application.properties
+│   │   └── catalogo.json
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
+│
+└── README.md
